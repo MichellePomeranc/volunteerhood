@@ -4,9 +4,9 @@ import Help from './Help'
 class Feed extends Component {
     
     render() {
-        let helpRequests = this.props.helpRequests
+       let feed=this.props.feed
       return (
-      <div>{helpRequests.map(h => <Help h={h}/>)}</div>
+      <div>{feed.map(f => <Help feed={f} />)}</div>
       )
     }
   }
