@@ -1,25 +1,57 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Feed from './components/Feed'
 import Help from './components/Help'
-import UserLog from './components/Login-Signup'
+// import UserLog from './components/Login-Signup'
 import Menu from './components/Menu'
 import Profile from './components/Profile'
+import 'font-awesome/css/font-awesome.min.css';
+
+
+// import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import MenuIcon from '@material-ui/icons/Menu';
+
+
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      helpRequests: ['helphelp',' help',' asd']
+      helpRequests: ['helphelp',' help',' asd'],
+      left: false
+      
     }
+   
   }
 
+
+ toggleDrawer = (side, open) => event => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;   
+    }
+
+    this.setState({ ...this.state, [side]: open });
+  };
+  
+  
+  
+
   // async componentDidMount() {
-  //   const response = await this.getFeed()
-  //   this.setState({ Feed: response.data })
+  //   // const response = await this.getFeed()
+  //   // this.setState({ Feed: response.data })
+    
+  //   return(
+  //     <Feed/>
+  //   )
+    
   // }
+
+  
 
   // async getFeed() {
   //   return axios.get('http://localhost:8080/feed')
@@ -39,20 +71,43 @@ class App extends Component {
   //   this.setState({ Feed: response.data })
   // }
 
+   sideList = side => (
+    <div
+      
+      role="presentation"
+      onClick={this.toggleDrawer(side, false)}
+      onKeyDown={this.toggleDrawer(side, false)}
+    >
+      <List>
+       <div>
+         <div><Link className="main-links" to="/Feed">Feed</Link></div>
+         <div><Link className="main-links" to="/Profile">Profile</Link></div>
+        {/* <Link className="main-links" to="/UserLog">UserLog</Link> */}
+        </div>
+      </List>
+      </div>
+   )
+
 
   render() {
+    
+    
+  
     return (
-      <Router>
-        <div>
-          <Link className="main-links" to="/Feed">Feed</Link>
-          <Link className="main-links" to="/Profile">Profile</Link>
-          <Link className="main-links" to="/UserLog">UserLog</Link>
-        </div>
-            
-        <Route path="/Feed" exact render={() => (<Feed helpRequests={this.state.helpRequests}/>)}/>
-        <Route path="/Profile" exact render={() => (<Profile />)}/>
-        <Route path="/UserLog" exact render={() => (<UserLog />)}/>
-  </Router>
+      <div>
+      < MenuIcon onClick={this.toggleDrawer('left', true)}/>
+      
+        <Router>
+      <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+        {this.sideList('left')}
+      </Drawer>
+      <Route path="/Feed" exact render={() => (<Feed helpRequests={this.state.helpRequests}/>)}/>
+      <Route path="/Profile" exact render={() => (<Profile />)}/>
+        </Router>
+         {/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
+
+      
+    </div>
   )
 }
 }
