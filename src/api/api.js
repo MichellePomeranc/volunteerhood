@@ -10,7 +10,6 @@ router.get("/check", async function (req, res) {
 router.get("/feed", async function (req, res) {
     let query =`SELECT * FROM help_requests`
     let result = await sequelize.query(query)
-    console.log(result)
     res.send(result)
     })
 
