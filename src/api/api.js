@@ -18,7 +18,7 @@ router.post("/signup", async function (req, res) {
         console.log(newUser)
         let query = `INSERT INTO user VALUES(null, '${newUser.name}','${newUser.email}' ,
             '${newUser.password}', '${newUser.phone}', '${newUser.radius}', '${newUser.ranking}', '${newUser.counter}')`
-            await sequelize.query(query)
+             sequelize.query(query)
             res.send('the request inserted')
     })
 
@@ -43,10 +43,22 @@ router.post("/feed", function (req, res) {
 router.put("/feed/:id", function (req, res) {
    let id = req.params.id
    let helper = req.body.id
-   console.log(id)
-   let query = `UPDATE help_requests SET status = 'in process', userHelper = ${helper}`
-   sequelize.query(query)
-   res.end()
+   if(id && helper){
+       let query = `UPDATE help_requests SET status = 'in process', userHelper = ${helper}`
+       sequelize.query(query)
+       res.end()
+
+   }
+   
+})
+
+router.post('/login',async function(req,res){
+    let x= req.body;
+    // console.log(x.auth)
+    let query = `SELECT * FROM user WHERE email = '${x.auth.email}' AND password = '${x.auth.password}'`
+    let y = await sequelize.query(query)
+    res.send(y[0])
+    
 })
 
 module.exports = router
