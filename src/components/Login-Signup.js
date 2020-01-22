@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
 import Feed from './Feed';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Profile from './Profile'
 
 class UserLog extends Component {
   constructor(){
