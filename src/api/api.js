@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const Sequelize = require('sequelize')
-// const sequelize = new Sequelize('mysql://root:@localhost/volunteerhood')
-const sequelize = new Sequelize('mysql://root:Aliahumus1@localhost/volunteerhood')
+const sequelize = new Sequelize('mysql://root:@localhost/volunteerhood')
+// const sequelize = new Sequelize('mysql://root:Aliahumus1@localhost/volunteerhood')
 
 router.get("/check", async function (req, res) {
         res.send("hello world")
