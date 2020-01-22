@@ -125,14 +125,6 @@
     width: 100vw;
   }
 
-  .MuiPaper-root {
-    /* background-color: rgb(250, 1, 1); */
-    width: 70vw;
-    font-family: sans-serif;
-    font-size: 25px;
-  }
-}
-
 .welcome{
   text-align: center;
 }
@@ -159,14 +151,8 @@ body {
   background-color: rgb(235, 231, 214);
 }
 
-#emailInput {
-  width: 70vw;
-  height: 25px;
-  font-size: 20px;
-  margin: 5px;
-  border:1px solid black;
-}
-#passwordInput { 
+
+#passwordInputSignIn, #passwordInputSignUp, #emailInput, #nameInput, #phoneInput { 
   width: 70vw;
   height: 25px;
   font-size: 20px;
@@ -174,23 +160,7 @@ body {
   border:1px solid black ;
 }
 
-#nameInput {
-  width: 70vw;
-  height: 25px;
-  font-size: 20px;
-  margin: 5px;
-  border:1px solid black ;
-}
-
-#phoneInput {
-  width: 70vw;
-  height: 25px;
-  font-size: 20px;
-  margin: 5px;
-  border:1px solid black ;
-}
-
-.loginbtn{
+.loginbtn {
   width: 50vw;
   height: 30px;
   font-size: 20px;
@@ -210,16 +180,55 @@ body {
   color: white;
 }
 
-.loginForm{
+.signupForm, .loginForm, .requestForm{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.signupForm{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.profileName, .profileEmail, .profileRanking {
+  margin-left: 15px;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.profileInfo {
+  margin-left: 15px;
+  font-size: 23px;
+}
+
+.requestHelpBtn{
+  width: 50vw;
+  height: 30px;
+  font-size: 20px;
+  border: 1px solid black;
+  margin: 5px;
+  background-color: rgb(114, 27, 35);
+  color: white;
+}
+
+.descriptionForm, .skillNeeded, .dateOption {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.description, .skillDropdown, .dateSelected {
+  width: 70vw;
+  height: 25px;
+  font-size: 20px;
+  margin: 5px;
+  border:1px solid black ;
+}
+
+.addRequest {
+  width: 50vw;
+  height: 40px;
+  font-size: 20px;
+  border: 1px solid black;
+  margin-top: 45px;
+  background-color: rgb(114, 27, 35);
+  color: white;
+}
+
 }
