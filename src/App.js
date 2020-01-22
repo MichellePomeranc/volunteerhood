@@ -143,7 +143,11 @@ class App extends Component {
 			<Link to="/login">Log In</Link> : 
 			<Link className="link" onClick={this.logout} to="/feed">Log Out</Link>
 	}	
-
+					</div>
+				</div>
+			</List>
+		</div>
+	);
 	render() {
 		return (
 			<div>
@@ -153,7 +157,6 @@ class App extends Component {
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user} />} />
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />
 					<Route exact path="/newRequest" exact render={() => <New_Request addNewRequest={this.addNewRequest} />} />
-
 				</Router>
 			</div>
 		);

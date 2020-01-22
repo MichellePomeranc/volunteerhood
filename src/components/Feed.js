@@ -21,8 +21,11 @@ class Feed extends Component {
         <table>
           {feed.map(f => <Help key={f.id} f={f} acceptReq={this.acceptReq} />)}
         </table>
-      </div>
-
+      </div>        
+      )
+    } else{
+      return <h4>Please login first!</h4>
+    }
     )} else{
       return <h4>Please login first!</h4>
     }
