@@ -45,7 +45,7 @@ export default function Menu() {
         <Divider />
         <ListItem><Link className={classes.list} to="/feed">Feed</Link></ListItem>
         <Divider />
-        <ListItem><Link className={classes.list} to="/login">Log In</Link></ListItem>
+        <ListItem>{this.state.user.login == false ? <Link className={classes.list} to="/login">Log In</Link> : <Link className={classes.list} to="/">Log out</Link>}</ListItem>
         <Divider />
       </List>
     </div>
