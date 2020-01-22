@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom';
+import Feed from './Feed';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class UserLog extends Component {
   constructor(){
@@ -34,20 +36,20 @@ login=()=>{
     render() {
       if(this.props.user.login){
       return (
-        
-        <Redirect exact to="/feed" />
-          
+
+        <Redirect exact to="/feed"  />
       )
         } else {
         return(
           <div>
+        
         <h3>sign up</h3>
         <div> Name: <input name='name' type="text" placeholder="Name" onChange={this.update}></input></div>
         <div> Email: <input name='email' type="email" placeholder="email" onChange={this.update}></input></div>
         <div> Password: <input name='password' type="password" placeholder="password" onChange={this.update}></input></div>
         <div> Phone: <input name='phone' type="text" placeholder="phone" onChange={this.update}></input></div>
         <button onClick={this.postNewUser}>send</button>
-
+        
           <h3>log in</h3>
         <div> Email: <input name='email' type="email" placeholder="email" onChange={this.update}></input></div>
         <div> Password: <input name='password' type="password" placeholder="password" onChange={this.update}></input></div>
