@@ -14,13 +14,12 @@ router.get("/feed", async function (req, res) {
     res.send(result)
     })
 
-router.post("/signup", async function (req, res) {
+router.post("/signup",async function(req, res) {
         let newUser = req.body
-        console.log(newUser)
         let query = `INSERT INTO user VALUES(null, '${newUser.name}','${newUser.email}' ,
             '${newUser.password}', '${newUser.phone}', '${newUser.radius}', '${newUser.ranking}', '${newUser.counter}')`
-             sequelize.query(query)
-            res.send('the request inserted')
+            sequelize.query(query)
+            res.end()
     })
 
 
@@ -33,18 +32,17 @@ router.post("/addSkill", function (req, res) {
     res.end()
 })
 
-router.post("/feed", function (req, res) {
+router.post("/feed",async function(req, res){
     let newHelp = req.body
     let query = `INSERT INTO help_requests VALUES(null, '${newHelp.userReq}',null ,
          'open', '${newHelp.description}', '${newHelp.skill}', '${newHelp.date}')`
-    sequelize.query(query)
-    res.send('the request inserted')
+    let  y= await sequelize.query(query)
+    res.end('the request inserted')
 })
 
 router.put("/feed/:rid/:hid", function (req, res) {
    let rid = req.params.rid
    let hid = req.params.hid
-   console.log(hid)
        let query = `UPDATE help_requests SET status = 'in process', userHelper = ${hid} WHERE id = ${rid} `
        sequelize.query(query)
        res.end()

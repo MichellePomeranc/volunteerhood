@@ -16,24 +16,27 @@ import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 import New_Request from './components/New_Request';
 
+
+const initialState={
+	feed: [],
+	left: false,
+	user: {
+		id: Number,
+		login: false,
+		name: 'guest',
+		email: '',
+		password: '',
+		phone: '',
+		radius: Number,
+		ranking: Number,
+		counter: Number
+}
+}
+
 class App extends Component {
 	constructor() {
 		super();
-		this.state = {
-			feed: [],
-			left: false,
-			user: {
-				id: Number,
-				login: false,
-				name: 'guest',
-				email: '',
-				password: '',
-				phone: '',
-				radius: Number,
-				ranking: Number,
-				counter: Number
-			}
-		};
+		this.state = initialState;
 	}
 
 	toggleDrawer = (side, open) => (event) => {
@@ -52,7 +55,9 @@ class App extends Component {
 		return axios.get('http://localhost:8080/feed');
 	}
 
-	addNewUser(obj) {
+	 addNewUser = async (obj)=> {
+		 console.log(obj);
+		 
 		let newUser = {
 			name: obj.name,
 			email: obj.email,
@@ -62,10 +67,26 @@ class App extends Component {
 			ranking: 0,
 			counter: 0
 		}
-		axios.post('http://localhost:8080/signup', newUser);
-
+		axios.post('http://localhost:8080/signup', newUser)
+		// console.log(user)
+		//  user = user.data
+		// console.log(user)
+		console.log(newUser);
+		
+		this.setState({
+			user: {
+				id: newUser.id,
+				login: true,
+				name: newUser.name,
+				email: newUser.email,
+				password: newUser.password,
+				phone: newUser.phone,
+				radius: newUser.radius,
+				ranking: newUser.ranking,
+				counter: newUser.counter
+			}
+		})
 	}
-
 	acceptReq = (reqId) => {
 		let helperId = this.state.user.id
 		console.log(helperId)
@@ -95,6 +116,15 @@ class App extends Component {
 			}
 		})
 	}
+	logout= ()=>{
+		// newstate={...this.state}
+		this.state = {
+			feed: [...this.state.feed],
+			left: false,
+			user: initialState
+		};
+		// document.getElementsByClassName('link').
+	  }
 
 	addNewRequest = (obj)=>{
 console.log(obj)
@@ -119,6 +149,12 @@ axios.post(`http://localhost:8080/feed`,newRequest)
 	//   let response = await this.getFeed()
 	//   this.setState({ Feed: response.data })
 	// }
+	x=()=>{
+		return this.state.user.login == false ? 
+			<Link to="/login">Log In</Link> : 
+			<Link className="link" onClick={this.logout} to="/feed">Log Out</Link>
+	}	
+
 
 	sideList = (side) => (
 		<div role="presentation" onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
@@ -128,11 +164,11 @@ axios.post(`http://localhost:8080/feed`,newRequest)
 					<Divider />
 					<div><Link className="main-links" to="/feed">Feed</Link></div>
 					<Divider />
-					{/* <Link className="main-links" to="/UserLog">UserLog</Link> */}
+					
 					<div>
-						<Link className="main-links" to="/login">
-							Login
-						</Link>
+	                {/* <div>{this.state.user.login == false ? <Link to="/login">Log In</Link> : <Link className="link" onClick={this.logout} to="/feed">Log Out</Link>}</div> */}
+					<div>{this.x()}</div>
+
 					</div>
 				</div>
 			</List>
@@ -146,7 +182,7 @@ axios.post(`http://localhost:8080/feed`,newRequest)
 				<Router>
 					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
 					{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
-					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user}/>} />
+					<Route exact path="/feed" exact render={() => <Feed login={this.state.user.login} feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user}/>} />
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user}/>} />
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />
 					<Route exact path="/newRequest" exact render={() => <New_Request addNewRequest={this.addNewRequest}/>}/>

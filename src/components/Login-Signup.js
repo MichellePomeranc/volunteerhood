@@ -25,12 +25,20 @@ class UserLog extends Component {
   postNewUser = () => {
     let newUser = { ...this.state }
     this.props.addNewUser(newUser)
+    console.log(newUser);
+    
+    // return(
+    //  <Redirect exact to="/feed" />
+    // )
+    
+    
   }
+  // logout=()=>{
+  //   this.props.login=false
+  // }
 
   login = () => {
     let newUser = { ...this.state }
-    console.log(newUser);
-
     this.props.login(newUser.email, newUser.password)
   }
 
@@ -47,6 +55,8 @@ class UserLog extends Component {
             <div><input id="emailInput" name='email' type="email" placeholder="Email" onChange={this.update}></input></div>
             <div><input id="passwordInput" name='password' type="password" placeholder="Password" onChange={this.update}></input></div>
             <button className="loginbtn" onClick={this.login}>Log In</button>
+            
+
           </div>
           <div className="signupForm">
             <h3>SIGN UP</h3>
