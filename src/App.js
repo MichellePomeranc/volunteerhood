@@ -6,7 +6,6 @@ import Feed from './components/Feed';
 import axios from 'axios';
 // import UserLog from './components/Login-Signup'
 // import Help from './components/Help';
-import axios from 'axios';
 import UserLog from './components/Login-Signup'
 // import Menu from './components/Menu';
 import Profile from './components/Profile';
@@ -21,18 +20,18 @@ class App extends Component {
 		super();
 		this.state = {
 			feed: [],
-      left: false,
-      user:{
-        id:Number,
-        login:false,
-        name:'',
-        email:'',
-        password:'',
-        phone:'',
-        radius:Number,
-        ranking:Number,
-        counter:Number
-      }
+			left: false,
+			user: {
+				id: Number,
+				login: false,
+				name: '',
+				email: '',
+				password: '',
+				phone: '',
+				radius: Number,
+				ranking: Number,
+				counter: Number
+			}
 		};
 	}
 
@@ -52,49 +51,49 @@ class App extends Component {
 		return axios.get('http://localhost:8080/feed');
 	}
 
-  addNewUser(obj){
-    let newUser = {
-      name:obj.name,
-      email:obj.email,
-      password:obj.password,
-      phone:obj.phone,
-      radius:0,
-      ranking:0,
-      counter:0
-    }    
-    axios.post('http://localhost:8080/signup',newUser);
+	addNewUser(obj) {
+		let newUser = {
+			name: obj.name,
+			email: obj.email,
+			password: obj.password,
+			phone: obj.phone,
+			radius: 0,
+			ranking: 0,
+			counter: 0
+		}
+		axios.post('http://localhost:8080/signup', newUser);
 
-  }
+	}
 
-  acceptReq=(reqId)=>{
-    let helperId=this.state.user.id ||0
-    console.log(helperId)
-    axios.put(`http://localhost:8080/feed/${reqId}`,helperId)
-  }
+	acceptReq = (reqId) => {
+		let helperId = this.state.user.id || 0
+		console.log(helperId)
+		axios.put(`http://localhost:8080/feed/${reqId}`, helperId)
+	}
 
-  login= async(email,password)=>{
-    let user = await axios.post('http://localhost:8080/login', {
-      auth: {
-        email: email,
-      password: password
-    }
-    })
-console.log(user.data[0])
-user=user.data[0]
-    this.setState({
-      user:{
-        id:user.id,
-        login:true,
-        name:user.name,
-        email:user.email,
-        password:user.password,
-        phone:user.phone,
-        radius:user.radius,
-        ranking:user.ranking,
-        counter:user.counter
-      }
-    })
-  }
+	login = async (email, password) => {
+		let user = await axios.post('http://localhost:8080/login', {
+			auth: {
+				email: email,
+				password: password
+			}
+		})
+		console.log(user.data[0])
+		user = user.data[0]
+		this.setState({
+			user: {
+				id: user.id,
+				login: true,
+				name: user.name,
+				email: user.email,
+				password: user.password,
+				phone: user.phone,
+				radius: user.radius,
+				ranking: user.ranking,
+				counter: user.counter
+			}
+		})
+	}
 	// requestHelp = async (newHelp) => {
 	//   await axios.post('http://localhost:8080/help', newHelp)
 	//   let data = await this.getFeed()
@@ -114,11 +113,11 @@ user=user.data[0]
 			<List>
 				<div>
 					<div><Link className="main-links" to="/profile">Profile</Link></div>
-					<Divider/>
+					<Divider />
 					<div><Link className="main-links" to="/feed">Feed</Link></div>
-					<Divider/>
+					<Divider />
 					{/* <Link className="main-links" to="/UserLog">UserLog</Link> */}
-          <div>
+					<div>
 						<Link className="main-links" to="/login">
 							Login
 						</Link>
@@ -134,12 +133,10 @@ user=user.data[0]
 				<MenuIcon onClick={this.toggleDrawer('left', true)} />
 				<Router>
 					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
-					<Route path="/feed" exact render={() => <Feed feed={this.state.feed} />} />
-					<Route path="/profile" exact render={() => <Profile />} />
 					{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} />} />
 					<Route exact path="/profile" exact render={() => <Profile />} />
-          <Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login}/>} />
+					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />
 				</Router>
 			</div>
 		);
