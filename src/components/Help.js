@@ -11,13 +11,13 @@ class Help extends Component {
       // console.log(this.props.f)
       let f=this.props.f
       return (
-      <div>
-        <div>{f.description}</div>
-        <div>{f.userReq}</div>
-        <div>{f.skill}</div>
-        <div>{f.date}</div>
+      <tr>
+        <div><span className="user">User: </span>{f.userReq}</div>     
+        <div><span className="skill">Skill: </span><span>{f.skill}</span></div>
+        <div><span className="description">Description: </span>{f.description}</div>
+        <div className="date">{f.date}</div>
         <div><button onClick={this.acceptReq()}>accept</button></div>
-      </div>
+      </tr>
       )
     }
   }

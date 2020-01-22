@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Feed from './components/Feed';
+import axios from 'axios';
+// import UserLog from './components/Login-Signup'
 // import Help from './components/Help';
 import axios from 'axios';
 import UserLog from './components/Login-Signup'
 // import Menu from './components/Menu';
 import Profile from './components/Profile';
 import 'font-awesome/css/font-awesome.min.css';
-
-// import { makeStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-// import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -113,16 +113,10 @@ user=user.data[0]
 		<div role="presentation" onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
 			<List>
 				<div>
-					<div>
-						<Link className="main-links" to="/feed">
-							Feed
-						</Link>
-					</div>
-					<div>
-						<Link className="main-links" to="/profile">
-							Profile
-						</Link>
-					</div>
+					<div><Link className="main-links" to="/profile">Profile</Link></div>
+					<Divider/>
+					<div><Link className="main-links" to="/feed">Feed</Link></div>
+					<Divider/>
 					{/* <Link className="main-links" to="/UserLog">UserLog</Link> */}
           <div>
 						<Link className="main-links" to="/login">
@@ -139,14 +133,14 @@ user=user.data[0]
 			<div>
 				<MenuIcon onClick={this.toggleDrawer('left', true)} />
 				<Router>
-					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-						{this.sideList('left')}
-					</Drawer>
+					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
+					<Route path="/feed" exact render={() => <Feed feed={this.state.feed} />} />
+					<Route path="/profile" exact render={() => <Profile />} />
+					{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} />} />
 					<Route exact path="/profile" exact render={() => <Profile />} />
           <Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login}/>} />
 				</Router>
-				{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
 			</div>
 		);
 	}

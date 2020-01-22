@@ -42,7 +42,7 @@
   text-shadow: black;
   font-size: larger;
   font-weight: 600;
-  color: blue;
+  /* color: blue; */
   /* display: grid; */
   text-align: center;
 }
@@ -54,15 +54,55 @@
   min-height: 100vh;
 } */
 
-.menu-toggle {
-  display: none;
-}
-@media (max-width: 767px) {
+
+@media (max-width: 850px) {
   .sidebar {
     display: none;
   }
+  
   .menu-toggle {
-    display: initial; /* display the toggle, previously hidden */
+    display: initial;
+   /* display the toggle, previously hidden */
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+  
+  .user {
+    font-weight: 500;
+  }
+  
+  .skill {
+    font-weight: 500;
+  }
+  
+  .description {
+    font-weight: 500;
+  }
+  
+  .date {
+    font-weight: 500;
+  }
+  
+  #feed tr {
+    text-align: center;
+  }
+  
+  table {
+    font-size: 20px;
+    align-self: center;
+    border:1px solid black ;
+    margin-top: 30px;
+    padding: 10px;  
+    width: 100vw;
+  }
+
+  .MuiPaper-root {
+    /* background-color: rgb(250, 1, 1); */
+    width: 70vw;
+    font-family: sans-serif;
+    font-size: 25px;
   }
 }
 
