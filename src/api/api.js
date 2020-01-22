@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('mysql://root:@localhost/volunteerhood')
-// const sequelize = new Sequelize('mysql://root:Aliahumus1@localhost/volunteerhood')
+// const sequelize = new Sequelize('mysql://root:@localhost/volunteerhood')
+const sequelize = new Sequelize('mysql://root:Aliahumus1@localhost/volunteerhood')
 
 router.get("/check", async function (req, res) {
         res.send("hello world")
@@ -56,7 +56,6 @@ router.post('/login',async function(req,res){
     let query = `SELECT * FROM user WHERE email = '${x.auth.email}' AND password = '${x.auth.password}'`
     let y = await sequelize.query(query)
     res.send(y[0])
-    
 })
 
 module.exports = router

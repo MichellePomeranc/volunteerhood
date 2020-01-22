@@ -94,6 +94,7 @@ class App extends Component {
 			}
 		})
 	}
+
 	// requestHelp = async (newHelp) => {
 	//   await axios.post('http://localhost:8080/help', newHelp)
 	//   let data = await this.getFeed()
@@ -134,7 +135,7 @@ class App extends Component {
 				<Router>
 					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
 					{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
-					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} />} />
+					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user}/>} />
 					<Route exact path="/profile" exact render={() => <Profile />} />
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />
 				</Router>
