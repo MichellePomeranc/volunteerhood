@@ -32,11 +32,11 @@ class NewRequest extends Component {
     }
 
     render() {
+        const startDate = new Date();
         function onResize(event) {
             console.log(event.type);
         }
 
-        const startDate = new Date();
         if (this.state.redirect) {
             return (
                 <Redirect to="/feed" />

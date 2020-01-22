@@ -137,22 +137,16 @@ class App extends Component {
 	//   await axios.put('http://localhost:8080/help', { data: { id: help._id } })
 	//   let response = await this.getFeed()
 	//   this.setState({ Feed: response.data })
-	// }
-	x=()=>{
-		return this.state.user.login == false ? 
-			<Link to="/login">Log In</Link> : 
-			<Link className="link" onClick={this.logout} to="/feed">Log Out</Link>
-	}	
-					</div>
-				</div>
-			</List>
-		</div>
-	);
+	// }	
+
 	render() {
+		console.log(this.state.user)
 		return (
 			<div>
 				<Router>
+					{/* {Menu(this.state.user)} */}
 					<Menu />
+					<Route exact path="/menu" exact render={() => <Menu user={this.state.user} />} />
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user} />} />
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user} />} />
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,41 +20,55 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Menu() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    left: false,
-  });
 
-  const toggleDrawer = (side, open) => event => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
+class Menu extends Component {
+  constructor() {
+    super();
+    this.state = {
+      left: false
     }
+  }
 
-    setState({ ...state, [side]: open });
-  };
+    classes = useStyles();
+    // const [state, setState] = React.useState({
+    //   left: false,
+    // });
 
-  const sideList = side => (
-    <div className={classes.list} role="presentation" onClick={toggleDrawer(side, false)} onKeyDown={toggleDrawer(side, false)}>
-      <List>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar><Avatar alt="Remy Sharp" src="../public/logo512.png" /></ListItemAvatar>
-        </ListItem>
-        <Divider />
-        <ListItem><Link className={classes.list} to="/profile">Profile</Link></ListItem>
-        <Divider />
-        <ListItem><Link className={classes.list} to="/feed">Feed</Link></ListItem>
-        <Divider />
-        <ListItem>{this.state.user.login == false ? <Link className={classes.list} to="/login">Log In</Link> : <Link className={classes.list} to="/">Log out</Link>}</ListItem>
-        <Divider />
-      </List>
-    </div>
-  );
+    // console.log(props)
 
-  return (
-    <div>
-      <Button onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>{sideList('left')}</Drawer>
-    </div>
-  );
-}
+    toggleDrawer = (side, open) => event => {
+      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+      }
+      this.setState({ ...this.state, [side]: open });
+    };
+
+    sideList = side => (
+      <div className={this.classes.list} role="presentation" onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
+        <List>
+          <ListItem alignItems="flex-start">
+            <ListItemAvatar><Avatar alt="Remy Sharp" src="../public/logo512.png" /></ListItemAvatar>
+          </ListItem>
+          <Divider />
+          <ListItem><Link className={this.classes.list} to="/profile">Profile</Link></ListItem>
+          <Divider />
+          <ListItem><Link className={this.classes.list} to="/feed">Feed</Link></ListItem>
+          <Divider />
+          {/* <ListItem><Link className={classes.list} to="/login">login</Link></ListItem> */}
+          <ListItem>{!this.props.user.login ? <Link className={this.classes.list} to="/login">Log In</Link> : <Link className={this.classes.list} to="/">Log out</Link>}</ListItem>
+          <Divider />
+        </List>
+      </div>
+    )
+
+    render() {
+      return (
+        <div>
+          <Button onClick={this.toggleDrawer('left', true)}><MenuIcon /></Button>
+          <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
+        </div>
+      );
+    }
+  }
+
+export default Menu

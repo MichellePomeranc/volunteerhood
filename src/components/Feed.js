@@ -9,11 +9,11 @@ class Feed extends Component {
   }
 
   render(){
-    
     // console.log(feed)
-    if(this.props.login){
+    if(this.props.user.login){
       let feed = this.props.feed
       return (
+        <div>
         <div>
           <h4>Hello {this.props.user.name}, who are you going to help today?</h4>
           <Link to="/newRequest"><button role="button" className="requestHelpBtn">Ask for Help</button></Link>
@@ -21,13 +21,9 @@ class Feed extends Component {
         <table>
           {feed.map(f => <Help key={f.id} f={f} acceptReq={this.acceptReq} />)}
         </table>
-      </div>        
-      )
-    } else{
-      return <h4>Please login first!</h4>
-    }
-    )} else{
-      return <h4>Please login first!</h4>
+        </div>
+    )} else {
+      return <div><h4>Please login first!</h4></div>
     }
   }
 }
