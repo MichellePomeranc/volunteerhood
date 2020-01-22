@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class Profile extends Component {
   constructor() {
@@ -8,22 +8,26 @@ class Profile extends Component {
       // Email:"anything",
       // Ranking:8,
       // Skills:"everything",
-      
+
     };
   }
-    render() {
-      return (
-    <div>
-      <div>name: {this.props.user.name}</div>
-      <div>Email: {this.props.user.email}</div>
-      <div>Ranking: {this.props.user.ranking}</div>
-      {/* <div>Skills: {this.props.user.name}</div> */}
-    </div>
-      
+  render() {
+    return (
+      <div className="userProfile">
+        <div className="profileName">Name</div>
+        <div className="profileInfo">{this.props.user.name}</div>
+        <div className="profileEmail">Email</div>
+        <div className="profileInfo">{this.props.user.email}</div>
+        <div className="profileRanking">Ranking</div>
+        <div className="profileInfo">{this.props.user.ranking}<span>★</span></div>
+        {/* <div className="profileSkills">Skills</div> */}
+        {/* <div>Skills: {this.props.user.name}</div> */}
+      </div>
 
 
-      )
-    }
+
+    )
   }
-  
-  export default Profile;
+}
+
+export default Profile;
