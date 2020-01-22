@@ -138,49 +138,17 @@ class App extends Component {
 	//   let response = await this.getFeed()
 	//   this.setState({ Feed: response.data })
 	// }
-	x=()=>{
-		return this.state.user.login == false ? 
-			<Link to="/login">Log In</Link> : 
-			<Link className="link" onClick={this.logout} to="/feed">Log Out</Link>
-	}	
-
-
-<<<<<<< HEAD
-=======
-	sideList = (side) => (
-		<div role="presentation" onClick={this.toggleDrawer(side, false)} onKeyDown={this.toggleDrawer(side, false)}>
-			<List>
-				<div>
-					<div><Link className="main-links" to="/profile">Profile</Link></div>
-					<Divider />
-					<div><Link className="main-links" to="/feed">Feed</Link></div>
-					<Divider />
-					
-					<div>
-	                {/* <div>{this.state.user.login == false ? <Link to="/login">Log In</Link> : <Link className="link" onClick={this.logout} to="/feed">Log Out</Link>}</div> */}
-					<div>{this.x()}</div>
-
-					</div>
-				</div>
-			</List>
-		</div>
-	);
-
->>>>>>> e205aca26cf3952cdf45407d4903f56d093e6c9e
+	
 	render() {
+		console.log(this.state.user)
 		return (
 			<div>
 				<Router>
-<<<<<<< HEAD
+					{/* {Menu(this.state.user)} */}
 					<Menu />
+					<Route exact path="/menu" exact render={() => <Menu user={this.state.user} />} />
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user} />} />
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user} />} />
-=======
-					<Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>{this.sideList('left')}</Drawer>
-					{/* <Route path="/UserLog" exact render={() => (<UserLog />)}/> */}
-					<Route exact path="/feed" exact render={() => <Feed login={this.state.user.login} feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user}/>} />
-					<Route exact path="/profile" exact render={() => <Profile user={this.state.user}/>} />
->>>>>>> e205aca26cf3952cdf45407d4903f56d093e6c9e
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />
 					<Route exact path="/newRequest" exact render={() => <New_Request addNewRequest={this.addNewRequest} />} />
 				</Router>
