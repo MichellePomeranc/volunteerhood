@@ -12,10 +12,11 @@ class Help extends Component {
     let f = this.props.f
     return (
       <tbody id='feed'>
-        <tr><th className="user">User: </th><td>{f.userReq}</td></tr>
-        <tr><th className="skill">Skill: </th><td>{f.skill}</td></tr>
-        <tr><th className="description">Description: </th><td>{f.description}</td></tr>
-        <tr className="date"><td>{f.date}</td><td><button onClick={this.acceptReq}>Help!</button></td></tr>
+        <tr><th className="user">User </th><td>{f.userReq}</td></tr>
+        <tr><th className="skill">Skill </th><td>{f.skill}</td></tr>
+        <tr><th className="description">Description </th><td>{f.description}</td></tr>
+        <tr><th className="date">Date</th><td>{f.date}</td></tr>
+        <tr><td colspan="2"><button className="help" onClick={this.acceptReq}>Help!</button></td></tr>
       </tbody>
     )
   }
