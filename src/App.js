@@ -137,8 +137,8 @@ class App extends Component {
 	//   await axios.put('http://localhost:8080/help', { data: { id: help._id } })
 	//   let response = await this.getFeed()
 	//   this.setState({ Feed: response.data })
-	// }
-	
+	// }	
+
 	render() {
 		console.log(this.state.user)
 		return (
