@@ -8,6 +8,7 @@ class Feed extends Component {
     }
     
     render() {
+      
        let feed=this.props.feed
        console.log(feed)
       return (

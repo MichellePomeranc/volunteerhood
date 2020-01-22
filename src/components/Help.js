@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 class Help extends Component {
 
   acceptReq =()=> {
-    // console.log(this.props.f);
+    console.log(this.props.f.id);
+
     this.props.acceptReq(this.props.f.id)
     
   } 
@@ -16,7 +17,7 @@ class Help extends Component {
         <div><span className="skill">Skill: </span><span>{f.skill}</span></div>
         <div><span className="description">Description: </span>{f.description}</div>
         <div className="date">{f.date}</div>
-        <div><button onClick={this.acceptReq()}>accept</button></div>
+        <div><button onClick={this.acceptReq}>accept</button></div>
       </tr>
       )
     }

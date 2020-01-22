@@ -41,16 +41,13 @@ router.post("/feed", function (req, res) {
     res.send('the request inserted')
 })
 
-router.put("/feed/:id", function (req, res) {
-   let id = req.params.id
-   let helper = req.body.id
-   if(id && helper){
-       let query = `UPDATE help_requests SET status = 'in process', userHelper = ${helper}`
+router.put("/feed/:rid/:hid", function (req, res) {
+   let rid = req.params.rid
+   let hid = req.params.hid
+   console.log(hid)
+       let query = `UPDATE help_requests SET status = 'in process', userHelper = ${hid} WHERE id = ${rid} `
        sequelize.query(query)
        res.end()
-
-   }
-   
 })
 
 router.post('/login',async function(req,res){

@@ -66,9 +66,9 @@ class App extends Component {
 	}
 
 	acceptReq = (reqId) => {
-		let helperId = this.state.user.id || 0
+		let helperId = this.state.user.id
 		console.log(helperId)
-		axios.put(`http://localhost:8080/feed/${reqId}`, helperId)
+		axios.put(`http://localhost:8080/feed/${reqId}/${helperId}`)
 	}
 
 	login = async (email, password) => {
