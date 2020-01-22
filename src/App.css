@@ -26,7 +26,6 @@
 
 .App-link {
   color: #61dafb;
-  
 }
 
 @keyframes App-logo-spin {
@@ -83,10 +82,39 @@
   
   .date {
     font-weight: 500;
-  }
-  
-  #feed tr {
     text-align: center;
+  }
+
+  .help {
+      background-color: rgb(11, 33, 224);
+      width: 100%;
+      height: 30px;
+      border: 1px solid black;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.5s;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    .help:active {
+      background-color: rgb(18, 36, 192);
+    }
+    
+  
+  #feed tr > th {
+    text-align: center;
+    background-color: lightgray;
+    border: black 1px solid;
+    padding: 5px
+  }
+
+  #feed tr > td {
+    text-align: center;
+    background-color: whitesmoke;
+    border: black 1px solid;
+    padding: 5px
   }
   
   table {
@@ -94,7 +122,6 @@
     align-self: center;
     border:1px solid black ;
     margin-top: 30px;
-    padding: 10px;  
     width: 100vw;
   }
 
@@ -108,4 +135,91 @@
 
 .welcome{
   text-align: center;
+}
+
+h4 {
+  background-color: rgb(0, 33, 221);
+  color: white;
+  padding: 5px;
+  /* border:1px solid black ; */
+  font-weight: normal;
+  font-size: 20px;
+}
+
+h3 {
+  color: black;
+  padding: 5px;
+  /* border:1px solid black ; */
+  font-weight: 600;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background-color: rgb(235, 231, 214);
+}
+
+#emailInput {
+  width: 70vw;
+  height: 25px;
+  font-size: 20px;
+  margin: 5px;
+  border:1px solid black;
+}
+#passwordInput { 
+  width: 70vw;
+  height: 25px;
+  font-size: 20px;
+  margin: 5px;
+  border:1px solid black ;
+}
+
+#nameInput {
+  width: 70vw;
+  height: 25px;
+  font-size: 20px;
+  margin: 5px;
+  border:1px solid black ;
+}
+
+#phoneInput {
+  width: 70vw;
+  height: 25px;
+  font-size: 20px;
+  margin: 5px;
+  border:1px solid black ;
+}
+
+.loginbtn{
+  width: 50vw;
+  height: 30px;
+  font-size: 20px;
+  border: 1px solid black;
+  margin: 5px;
+  background-color: rgb(11, 33, 224);
+  color: white;
+}
+
+.signupbtn{
+  width: 50vw;
+  height: 30px;
+  font-size: 20px;
+  border: 1px solid black;
+  margin: 5px;
+  background-color: rgb(11, 33, 224);
+  color: white;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signupForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

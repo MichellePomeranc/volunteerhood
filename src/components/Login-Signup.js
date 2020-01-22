@@ -1,64 +1,65 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Feed from './Feed';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Profile from './Profile'
 
 class UserLog extends Component {
-  constructor(){
-  super()
-  this.state={
-    name: "",
-    email:"",
-    password: "",
-    phone: ""
+  constructor() {
+    super()
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      phone: ""
+    }
   }
-}
 
-update = (e)=>{
-const name = e.target.name;
-this.setState({
-  [name]: e.target.value
-})
-}
+  update = (e) => {
+    const name = e.target.name;
+    this.setState({
+      [name]: e.target.value
+    })
+  }
 
-postNewUser =()=>{
-  let newUser = {...this.state}
-  this.props.addNewUser(newUser)
-}
+  postNewUser = () => {
+    let newUser = { ...this.state }
+    this.props.addNewUser(newUser)
+  }
 
-login=()=>{
-  let newUser = {...this.state}
-  console.log(newUser);
-  
-  this.props.login(newUser.email, newUser.password)
-}
+  login = () => {
+    let newUser = { ...this.state }
+    console.log(newUser);
 
-    render() {
-      if(this.props.user.login){
+    this.props.login(newUser.email, newUser.password)
+  }
+
+  render() {
+    if (this.props.user.login) {
       return (
-
-        <Redirect exact to="/feed"  />
+        <Redirect exact to="/feed" />
       )
-        } else {
-        return(
-          <div>
-        
-        <h3>sign up</h3>
-        <div> Name: <input name='name' type="text" placeholder="Name" onChange={this.update}></input></div>
-        <div> Email: <input name='email' type="email" placeholder="email" onChange={this.update}></input></div>
-        <div> Password: <input name='password' type="password" placeholder="password" onChange={this.update}></input></div>
-        <div> Phone: <input name='phone' type="text" placeholder="phone" onChange={this.update}></input></div>
-        <button onClick={this.postNewUser}>send</button>
-        
-          <h3>log in</h3>
-        <div> Email: <input name='email' type="email" placeholder="email" onChange={this.update}></input></div>
-        <div> Password: <input name='password' type="password" placeholder="password" onChange={this.update}></input></div>
-        <button onClick={this.login}>send</button>
-      </div>
+    } else {
+      return (
+        <div>
+          <div className="loginForm">
+            <h3>LOG IN</h3>
+            <div><input id="emailInput" name='email' type="email" placeholder="Email" onChange={this.update}></input></div>
+            <div><input id="passwordInput" name='password' type="password" placeholder="Password" onChange={this.update}></input></div>
+            <button className="loginbtn" onClick={this.login}>Log In</button>
+          </div>
+          <div className="signupForm">
+            <h3>SIGN UP</h3>
+            <div><input id="nameInput" name='name' type="text" placeholder="Name" onChange={this.update}></input></div>
+            <div><input id="emailInput" name='email' type="email" placeholder="Email" onChange={this.update}></input></div>
+            <div><input id="passwordInput" name='password' type="password" placeholder="Password" onChange={this.update}></input></div>
+            <div><input id="phoneInput" name='phone' type="text" placeholder="Phone number" onChange={this.update}></input></div>
+            <button className="signupbtn" onClick={this.postNewUser}>Sign Up</button>
+          </div>
+        </div>
       )
-    }
     }
   }
-  
-  export default UserLog;
+}
+
+export default UserLog;
