@@ -107,7 +107,8 @@
     text-align: center;
     background-color: lightgray;
     border: black 1px solid;
-    padding: 5px
+    padding: 5px;
+    width: 30px;
   }
 
   #feed tr > td {

@@ -55,12 +55,7 @@ class App extends Component {
 			ranking: 0,
 			counter: 0
 		}
-		axios.post('http://localhost:8080/signup', newUser)
-		// console.log(user)
-		//  user = user.data
-		// console.log(user)
-		console.log(newUser);
-		
+		axios.post('http://localhost:8080/signup', newUser)		
 		this.setState({
 			user: {
 				id: newUser.id,
@@ -75,6 +70,7 @@ class App extends Component {
 			}
 		})
 	}
+
 	acceptReq = (reqId) => {
 		let helperId = this.state.user.id
 		console.log(helperId)
@@ -104,14 +100,13 @@ class App extends Component {
 			}
 		})
 	}
-	logout= ()=>{
-		// newstate={...this.state}
-		this.state = {
+
+	logout= () => {
+		this.setState({
 			feed: [...this.state.feed],
 			left: false,
-			user: initialState
-		};
-		// document.getElementsByClassName('link').
+			user: initialState.user
+		})
 	  }
 
 	addNewRequest = (obj) => {
@@ -124,29 +119,14 @@ class App extends Component {
 		}
 		axios.post(`http://localhost:8080/feed`, newRequest)
 		this.getFeed()
-	}
-	// requestHelp = async (newHelp) => {
-	//   await axios.post('http://localhost:8080/help', newHelp)
-	//   let data = await this.getFeed()
-	//   this.setState({
-	//     Feed: data.data
-	//   })
-	// }
-
-	// helpStatus = async (help) => {
-	//   await axios.put('http://localhost:8080/help', { data: { id: help._id } })
-	//   let response = await this.getFeed()
-	//   this.setState({ Feed: response.data })
-	// }	
+	}	
 
 	render() {
 		console.log(this.state.user)
 		return (
 			<div>
 				<Router>
-					{/* {Menu(this.state.user)} */}
-					<Menu />
-					<Route exact path="/menu" exact render={() => <Menu user={this.state.user} />} />
+					<Menu user={this.state.user} logout={this.logout}/>
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user} />} />
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user} />} />
 					<Route exact path="/login" exact render={() => <UserLog addNewUser={this.addNewUser} user={this.state.user} login={this.login} />} />

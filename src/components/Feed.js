@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Help from './Help'
-import { Router, Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Feed extends Component {
 
@@ -23,7 +23,7 @@ class Feed extends Component {
         </table>
         </div>
     )} else {
-      return <div><h4>Please login first!</h4></div>
+      return <Redirect to='/login'></Redirect>
     }
   }
 }

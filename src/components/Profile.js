@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Profile extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class Profile extends Component {
     };
   }
   render() {
+    if(this.props.user.login){
     return (
       <div className="userProfile">
         <div className="profileName">Name</div>
@@ -23,10 +25,9 @@ class Profile extends Component {
         {/* <div className="profileSkills">Skills</div> */}
         {/* <div>Skills: {this.props.user.name}</div> */}
       </div>
-
-
-
-    )
+    )} else {
+      return <Redirect to='/login'></Redirect>
+    }
   }
 }
 
