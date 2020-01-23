@@ -126,7 +126,6 @@ class App extends Component {
 		return (
 			<div>
 				<Router>
-					{/* {Menu(this.state.user)} */}
 					<Menu user={this.state.user} logout={this.logout}/>
 					<Route exact path="/feed" exact render={() => <Feed feed={this.state.feed} acceptReq={this.acceptReq} user={this.state.user} />} />
 					<Route exact path="/profile" exact render={() => <Profile user={this.state.user} />} />

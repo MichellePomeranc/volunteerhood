@@ -47,6 +47,6 @@ USE volunteerhood;
 -- INSERT INTO skills VALUES('Programming' );
 
 -- DROP TABLE user;
--- DROP TABLE help_requests;
 -- DROP TABLE skills;
+-- DROP TABLE help_requests;
 -- DROP TABLE user_skills;
