@@ -10,7 +10,7 @@ class Feed extends Component {
 
   render(){
     // console.log(feed)
-    if(this.props.user.login){
+    if(!this.props.login){
       let feed = this.props.feed
       return (
         <div>
